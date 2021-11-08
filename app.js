@@ -75,18 +75,18 @@ app.get("/movieById", (req, res) => {
 
 //create new movie  {done}
 
-// app.post("/addNewMovie", (req, res) => {
-//   const newMovie = req.body.name;
-//   // newMovie = { name, isFav, isDeleted} = req.body;
-//   movies.push({
-//     id: movies.length + 1,
-//     name: newMovie,
-//     isFave: false,
-//     isDeleted: false,
-//   });
-//   res.status(200).json(newMovie);
-//   console.log(movies);
-// });
+app.post("/addNewMovie", (req, res) => {
+  const newMovie = req.body.name;
+  // newMovie = { name, isFav, isDeleted} = req.body;
+  movies.push({
+    id: movies.length + 1,
+    name: newMovie,
+    isFave: false,
+    isDeleted: false,
+  });
+  res.status(200).json(newMovie);
+  console.log(movies);
+});
 
 //-------------------------
 
