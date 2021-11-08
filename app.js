@@ -56,21 +56,21 @@ app.get("/favMovies", (req, res) => {
   res.status(200).json(favMovies);
   console.log(favMovies);
 });
-
+//------------------------
 
 //get movie by id {done}
 
-// app.get("/movieById", (req, res) => {
-//   const { id } = req.query;
-//   const byId = movies.find((element) => {
-//     return element.id === Number(id);
-//   });
-//   if (byId) {
-//     res.status(200).json(byId);
-//   } else {
-//     res.status(404).json("movie not found");
-//   }
-// });
+app.get("/movieById", (req, res) => {
+  const { id } = req.query;
+  const byId = movies.find((element) => {
+    return element.id === Number(id);
+  });
+  if (byId) {
+    res.status(200).json(byId);
+  } else {
+    res.status(404).json("movie not found");
+  }
+});
 //-------------------------
 
 //create new movie  {done}
