@@ -1,0 +1,25 @@
+{
+  "name": "w05d2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShahadAltuwijry/W05D2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShahadAltuwijry/W05D2/issues"
+  },
+  "homepage": "https://github.com/ShahadAltuwijry/W05D2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
