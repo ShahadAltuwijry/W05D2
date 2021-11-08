@@ -105,6 +105,22 @@ app.put("/updateMovieById/:id", (req, res) => {
 });
 
 //--------------------------
+ 
+//soft delete by Id {done}
+
+app.put("/softDelete/:id", (req, res) => {
+  const { id } = req.params;
+  // const {name} = req.body;
+  movies.forEach((ele) => {
+    if (ele.id === Number(id)) {
+      ele.isDeleted = true;
+    }
+  });
+  res.status(200).json(id);
+  console.log(movies);
+});
+
+//--------------------------
 
 app.listen(PORT, () => {
   console.log(`server is on and running on ${PORT}`);
