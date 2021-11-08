@@ -56,7 +56,7 @@ app.get("/favMovies", (req, res) => {
   res.status(200).json(favMovies);
   console.log(favMovies);
 });
-//------------------------
+
 
 //get movie by id {done}
 
