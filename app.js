@@ -92,17 +92,18 @@ app.post("/addNewMovie", (req, res) => {
 
 //update movie data by id {done}
 
-// app.put("/updateMovieById/:id", (req, res) => {
-//   const { id } = req.params;
-//   const { name } = req.body;
-//   movies.forEach((ele) => {
-//     if (ele.id === Number(id)) {
-//       ele.name = name;
-//     }
-//   });
-//   res.status(200).json(name);
-//   console.log(movies);
-// });
+app.put("/updateMovieById/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  movies.forEach((ele) => {
+    if (ele.id === Number(id)) {
+      ele.name = name;
+    }
+  });
+  res.status(200).json(name);
+  console.log(movies);
+});
+
 //--------------------------
 
 app.listen(PORT, () => {
