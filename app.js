@@ -108,33 +108,39 @@ app.post("/addNewMovie", (req, res) => {
 
 //5- update movie data by id {done}
 
-// app.put("/updateMovieById/:id", (req, res) => {
-//   const { id } = req.params;
-//   const { name } = req.body;
-//   movies.forEach((ele) => {
-//     if (ele.id === Number(id)) {
-//       ele.name = name;
-//     }
-//   });
-//   res.status(200).json(name);
-//   console.log(movies);
-// });
+app.put("/updateMovieById/:id", (req, res) => {
+  fs.readFile("./movies.json", (err, data) => {
+    let movie = JSON.parse(data.toString());
+    const { id } = req.params;
+    const { name } = req.body;
+    movie.forEach((ele) => {
+      if (ele.id === Number(id)) {
+        ele.name = name;
+      }
+    });
+    res.status(200).json(name);
+    console.log(movie);
+  });
+});
 
 //--------------------------
 
 //6- soft delete by Id {done}
 
-// app.put("/softDelete/:id", (req, res) => {
-//   const { id } = req.params;
-//   // const {name} = req.body;
-//   movies.forEach((ele) => {
-//     if (ele.id === Number(id)) {
-//       ele.isDeleted = true;
-//     }
-//   });
-//   res.status(200).json(id);
-//   console.log(movies);
-// });
+app.put("/softDelete", (req, res) => {
+  //could also be done with params
+  fs.readFile("./movies.json", (err, data) => {
+    let movie = JSON.parse(data.toString());
+    const { id } = req.query;
+    movie.forEach((ele) => {
+      if (ele.id === Number(id)) {
+        ele.isDeleted = true;
+      }
+    });
+    res.status(200).json(id);
+    console.log(movie);
+  });
+});
 
 //--------------------------
 
