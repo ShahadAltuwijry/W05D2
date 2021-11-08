@@ -1,5 +1,5 @@
 const express = require("express");
-// const fs = require("fs");
+const fs = require("fs");
 const app = express();
 
 const PORT = 5000;
@@ -7,118 +7,134 @@ const PORT = 5000;
 // app middleware
 app.use(express.json());
 
-const movies = [
-  {
-    id: 1,
-    name: "fast & furious",
-    isFav: true,
-    isDeleted: false,
-  },
-  {
-    id: 2,
-    name: "Lord Of Rings",
-    isFav: false,
-    isDeleted: false,
-  },
-  {
-    id: 3,
-    name: "The conjuring",
-    isFav: true,
-    isDeleted: false,
-  },
-];
+// const movies = fs.readFile("./movies.json", (err, data) => {
+//   console.log(data.toString());
+// });
 
-//get all existing movies  {done}
+// const movies = [
+//   {
+//     id: 1,
+//     name: "fast & furious",
+//     isFav: true,
+//     isDeleted: false,
+//   },
+//   {
+//     id: 2,
+//     name: "Lord Of Rings",
+//     isFav: false,
+//     isDeleted: false,
+//   },
+//   {
+//     id: 3,
+//     name: "The conjuring",
+//     isFav: true,
+//     isDeleted: false,
+//   },
+// ];
+
+//1- get all existing movies  {done}
 
 app.get("/movies", (req, res) => {
-  let existingMovies = [];
-  for (let i = 0; i < movies.length; i++) {
-    if (movies[i].isDeleted === false) {
-      existingMovies.push(movies[i]);
+  fs.readFile("./movies.json", (err, data) => {
+    let movie = JSON.parse(data.toString());
+    let existingMovies = [];
+    for (let i = 0; i < movie.length; i++) {
+      if (movie[i].isDeleted === false) {
+        existingMovies.push(movie[i]);
+      }
     }
-  }
 
-  res.status(200).json(existingMovies);
-  console.log(existingMovies);
+    res.status(200).json(existingMovies);
+    console.log(existingMovies);
+  });
 });
 //----------------------
 
-//get fav movies  {done}
+//2- get fav movies  {done}
 
 app.get("/favMovies", (req, res) => {
-  let favMovies = [];
-  for (let i = 0; i < movies.length; i++) {
-    if (movies[i].isFav === true) {
-      favMovies.push(movies[i]);
+  fs.readFile("./movies.json", (err, data) => {
+    let movie = JSON.parse(data.toString());
+    let favMovies = [];
+    for (let i = 0; i < movie.length; i++) {
+      if (movie[i].isFav === true) {
+        favMovies.push(movie[i]);
+      }
     }
-  }
 
-  res.status(200).json(favMovies);
-  console.log(favMovies);
+    res.status(200).json(favMovies);
+    console.log(favMovies);
+  });
 });
+
 //------------------------
 
-//get movie by id {done}
+//3- get movie by id {done}
 
 app.get("/movieById", (req, res) => {
-  const { id } = req.query;
-  const byId = movies.find((element) => {
-    return element.id === Number(id);
+  fs.readFile("./movies.json", (err, data) => {
+    let movie = JSON.parse(data.toString());
+    const { id } = req.query;
+    const byId = movie.find((element) => {
+      return element.id === Number(id);
+    });
+    if (byId) {
+      res.status(200).json(byId);
+    } else {
+      res.status(404).json("movie not found");
+    }
   });
-  if (byId) {
-    res.status(200).json(byId);
-  } else {
-    res.status(404).json("movie not found");
-  }
 });
 //-------------------------
 
-//create new movie  {done}
+//4- create new movie  {done}
 
 app.post("/addNewMovie", (req, res) => {
-  const newMovie = req.body.name;
-  // newMovie = { name, isFav, isDeleted} = req.body;
-  movies.push({
-    id: movies.length + 1,
-    name: newMovie,
-    isFave: false,
-    isDeleted: false,
+  fs.readFile("./movies.json", (err, data) => {
+    let movie = JSON.parse(data.toString());
+    const newMovie = req.body.name;
+    movie.push({
+      id: movie.length + 1,
+      name: newMovie,
+      isFave: false,
+      isDeleted: false,
+    });
+    res.status(200).json(newMovie);
+    console.log(movie);
   });
-  res.status(200).json(newMovie);
-  console.log(movies);
 });
 
 //-------------------------
 
-//update movie data by id {done}
+//5- update movie data by id {done}
 
-app.put("/updateMovieById/:id", (req, res) => {
-  const { id } = req.params;
-  const { name } = req.body;
-  movies.forEach((ele) => {
-    if (ele.id === Number(id)) {
-      ele.name = name;
-    }
-  });
-  res.status(200).json(name);
-  console.log(movies);
-});
+// app.put("/updateMovieById/:id", (req, res) => {
+//   const { id } = req.params;
+//   const { name } = req.body;
+//   movies.forEach((ele) => {
+//     if (ele.id === Number(id)) {
+//       ele.name = name;
+//     }
+//   });
+//   res.status(200).json(name);
+//   console.log(movies);
+// });
 
 //--------------------------
- 
-//soft delete by Id {done}
 
-app.put("/softDelete/:id", (req, res) => {
-  const { id } = req.params;
-  // const {name} = req.body;
-  movies.forEach((ele) => {
-    if (ele.id === Number(id)) {
-      ele.isDeleted = true;
-    }
-  });
-  res.status(200).json(id);
-  console.log(movies);
-});
+//6- soft delete by Id {done}
+
+// app.put("/softDelete/:id", (req, res) => {
+//   const { id } = req.params;
+//   // const {name} = req.body;
+//   movies.forEach((ele) => {
+//     if (ele.id === Number(id)) {
+//       ele.isDeleted = true;
+//     }
+//   });
+//   res.status(200).json(id);
+//   console.log(movies);
+// });
 
 //--------------------------
 

@@ -1,0 +1,20 @@
+[
+  {
+    " id": 1,
+    "name": "fast & furious",
+    "isFav": true,
+    "isDeleted": false
+  },
+  {
+    "id": 2,
+    "name": "Lord Of Rings",
+    "isFav": false,
+    "isDeleted": false
+  },
+  {
+    "id": 3,
+    "name": "The conjuring",
+    "isFav": true,
+    "isDeleted": false
+  }
+]
