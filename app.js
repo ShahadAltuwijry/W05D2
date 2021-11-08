@@ -7,30 +7,9 @@ const PORT = 5000;
 // app middleware
 app.use(express.json());
 
-// const movies = fs.readFile("./movies.json", (err, data) => {
-//   console.log(data.toString());
-// });
-
-// const movies = [
-//   {
-//     id: 1,
-//     name: "fast & furious",
-//     isFav: true,
-//     isDeleted: false,
-//   },
-//   {
-//     id: 2,
-//     name: "Lord Of Rings",
-//     isFav: false,
-//     isDeleted: false,
-//   },
-//   {
-//     id: 3,
-//     name: "The conjuring",
-//     isFav: true,
-//     isDeleted: false,
-//   },
-// ];
+const writeOver = (write) => {
+  fs.writeFile("./movies.json", JSON.stringify(write), () => {});
+};
 
 //1- get all existing movies  {done}
 
@@ -99,6 +78,7 @@ app.post("/addNewMovie", (req, res) => {
       isFave: false,
       isDeleted: false,
     });
+    writeOver(movie);
     res.status(200).json(newMovie);
     console.log(movie);
   });
@@ -118,6 +98,7 @@ app.put("/updateMovieById/:id", (req, res) => {
         ele.name = name;
       }
     });
+    writeOver(movie);
     res.status(200).json(name);
     console.log(movie);
   });
@@ -137,6 +118,7 @@ app.put("/softDelete", (req, res) => {
         ele.isDeleted = true;
       }
     });
+    writeOver(movie);
     res.status(200).json(id);
     console.log(movie);
   });

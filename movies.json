@@ -1,20 +1,7 @@
 [
-  {
-    " id": 1,
-    "name": "fast & furious",
-    "isFav": true,
-    "isDeleted": false
-  },
-  {
-    "id": 2,
-    "name": "Lord Of Rings",
-    "isFav": false,
-    "isDeleted": false
-  },
-  {
-    "id": 3,
-    "name": "The conjuring",
-    "isFav": true,
-    "isDeleted": false
-  }
+  { " id": 1, "name": "fast & furious", "isFav": true, "isDeleted": false },
+  { "id": 2, "name": "friday the 13th", "isFav": false, "isDeleted": true },
+  { "id": 3, "name": "The conjuring", "isFav": true, "isDeleted": true },
+  { "id": 4, "name": "harry potter", "isFave": false, "isDeleted": false },
+  { "id": 5, "name": "don't breath", "isFave": false, "isDeleted": true }
 ]
